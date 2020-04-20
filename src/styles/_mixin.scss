@@ -1,0 +1,23 @@
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+  &:not([disabled]):focus {
+    @content;
+  }
+}
+
+@mixin disabled {
+  &[disabled] {
+    cursor: not-allowed;
+    color: #f0f0f0;
+    background: linear-gradient(180deg, #c4c4c4 0%, #ababab 100%);
+    border-color: #9b9b9b;
+  }
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}

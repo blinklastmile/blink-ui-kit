@@ -1,0 +1,41 @@
+@import '../../styles/index.scss';
+@import '../../styles/mixin';
+@import '../../styles/colors';
+
+.blink-button {
+  padding: 0.5em 0.75em;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid;
+
+  //Generate CSS for all
+  @each $theme, $color in $theme-colors {
+    &.#{$theme} {
+      background: linear-gradient(
+        180deg,
+        adjust-color($color, $saturation: 10%, $lightness: 5%) 0%,
+        adjust-color($color, $saturation: -10%, $lightness: -5%) 100%
+      );
+      border-color: adjust-color($color, $lightness: -10%);
+      @include hover {
+        background: linear-gradient(
+          180deg,
+          adjust-color($color, $saturation: 10%, $lightness: 10%) 0%,
+          adjust-color($color, $saturation: -10%, $lightness: -10%) 100%
+        );
+        border-color: adjust-color($color, $lightness: -15%);
+      }
+      &:active {
+        background: linear-gradient(
+          0deg,
+          adjust-color($color, $saturation: 10%, $lightness: 10%) 0%,
+          adjust-color($color, $saturation: -10%, $lightness: -10%) 100%
+        ) !important;
+        border-color: adjust-color($color, $lightness: -15%);
+      }
+    }
+  }
+
+  @include disabled;
+}

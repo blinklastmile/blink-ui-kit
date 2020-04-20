@@ -1,0 +1,86 @@
+{
+  "name": "blink-ui-kit",
+  "version": "0.0.0-development",
+  "description": "Blink Component Library",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "NODE_ENV=production node ./tools/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -c .storybook -o docs",
+    "deploy-storybook": "storybook-to-ghpages",
+    "semantic-release": "semantic-release"
+  },
+  "author": {
+    "name": "Pierluigi Omar Giancola",
+    "email": "pierluigi.giancola@gmail.com"
+  },
+  "license": "GNU GPLv3",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "if git-branch-is -r \"(master|develop)\"; then npm run deploy-storybook; fi;"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,scss,d.ts,md}": "prettier --write",
+    "*.{js,jsx}": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "node-sass": "^4.13.1",
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "execa": "^4.0.0",
+    "fs-extra": "^9.0.0",
+    "git-branch-is": "^3.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.6",
+    "prettier": "^2.0.4",
+    "prop-types": "^15.7.2",
+    "sass-loader": "^8.0.2",
+    "semantic-release": "^17.0.6"
+  },
+  "files": [
+    "lib",
+    "dist",
+    "es"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blinklastmile/blink-ui-kit"
+  }
+}
